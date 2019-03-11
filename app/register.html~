@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sharing DApp</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+  <style>
+    .margin-top-3 {
+      margin-top: 3em;
+    }
+  </style>
+</head>
+<body class="container">
+  <h1>A Simple Sharing Decentralized Application</h1>
+    <div class="container-fluid">
+      <h2>Register Object</h2>
+      <div id="msg"></div>
+      <input type="text" id="description" placeholder="Enter the description of the object"/>
+      <br>
+      <br>
+      <input type="text" id="price" placeholder="Enter the hourly rental price of the object"/>
+      <br>
+      <br>
+      <input type="text" id="deposit" placeholder="Enter the deposit of the object and the deposit must be more than 24 times the price "/>
+      <br>
+      <br>
+      <a href="#" onclick="registerObject()" class="btn btn-primary">Register</a>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+<script src="app.js"></script>
+</html>

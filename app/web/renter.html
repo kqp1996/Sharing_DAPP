@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sharing Objects DApp</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+  <style>
+    .margin-top-3 {
+      margin-top: 3em;
+    }
+  </style>
+</head>
+<body class="container">
+  <h1>A Simple Sharing Objects Decentralized Application</h1>
+  <div class="col-sm-7 margin-top-3">
+    <h2>Objects Info</h2>
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Price(ether per hour)</th>
+            <th>Deposit</th>
+            <th>Start</th>
+            <th>End</th>
+          </tr>
+        </thead>
+        <tbody id="object-rows">
+        </tbody>
+      </table>
+    </div>
+    <div class="container-fluid">
+      <h2>Rent Object</h2>
+      <div id="rentmsg"></div>
+      <input type="text" id="objIDr" placeholder="Object ID"/>
+      <br>
+      <br>
+      <a href="#" onclick="rentObject()" class="btn btn-primary">Rent</a>
+    </div>
+    <div class="container-fluid">
+      <h2>Finish Sharing</h2>
+      <div id="fsmsg"></div>
+      <input type="text" id="objIDf" placeholder="Object ID"/>
+      <br>
+      <br>
+      <a href="#" onclick="finishSharing()" class="btn btn-primary">Finish</a>
+    </div>
+  </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+<script src="web3.js-develop/dist/web3.js"></script>
+<script src="app.js"></script>
+</html>

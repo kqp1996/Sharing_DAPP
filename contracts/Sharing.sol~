@@ -1,0 +1,90 @@
+pragma solidity ^0.4.18;//compiler version greater or equal to 0.4.0
+
+contract Sharing {
+  
+  //use the struct datatype to store the renter information
+  struct Renter{
+    address addr; // The address of the object'renter
+    uint256 start; // The start time of renting
+    uint256 end; // The end time of renting
+  }
+
+  //use the struct datatype to store the object information
+  struct Object {
+    address owner; // The address of the object'owner
+    bytes32 des;   // The description of the object
+    bool isrented;   // The status of the object, true represent has been rented,Otherwise the opposite
+    uint deposit; // The deposit of the object
+    uint price; // The hourly rental price of the object 
+    uint numRenters; // the number of people who have ever rented this object
+    mapping (uint => Renter) renters; // The info of renters
+  }
+
+  uint public numObjects; //The number of objects which have been registered
+  mapping (uint => Object) objects;
+  
+  //Constructor
+  function Sharing() public {
+    numObjects = 0;
+  }
+
+
+  /* This function is used to register new object.
+     The function will be called by someone who want to share the object.
+ */
+  function registerObject(bytes32 _objDes,uint _deposit, uint _price) public returns (uint){
+    
+    if(_deposit < _price*24){
+      throw;
+    }
+    objects[++numObjects] = Object(msg.sender,_objDes,false,_deposit,_price,0);
+    return numObjects;
+  }
+
+
+  /* This function is used to rent the object.
+     The function will be called by someone who want to rent the object.
+ */
+  function rentObject(uint _objId) payable public returns (bool) {
+    
+    Object storage obj = objects[_objId];
+
+    //Judge whether the object can be rented
+    
+    if(obj.isrented || (msg.value < obj.deposit){
+      throw;
+    }
+    
+
+    // add renter to object and store the current timestamp
+    obj.renters[++obj.numRenters] = Renter(msg.sender,now,0);
+
+    //Modify the object status
+    obj.isrented = true;
+
+    // send back any excess ether
+    uint change = msg.value - obj.deposit;
+    /*
+    if(!obj.renters[obj.numRenters].addr.send(change)){
+      throw;
+    }
+    */
+    return true;
+  }
+
+  function getnumRenters(uint _objId) view public returns (uint){
+    Object storage obj = objects[_objId];
+    return obj.numRenters;
+  }
+
+  function getprice(uint _objId) view public returns (uint){
+    Object storage obj = objects[_objId];
+    return obj.price;
+  }
+  
+  
+
+
+  
+
+}
